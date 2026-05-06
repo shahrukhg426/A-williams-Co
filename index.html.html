@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A. Williams & Co. (Solicitors) — Expert Legal Services in London</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══ RESET ═══ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#2A2A2A; --navy-mid:#242424; --navy-light:#363636;
+  --gold:#C8581E; --gold-light:#D96A2E; --gold-pale:rgba(200,88,30,0.13);
+  --white:#fff; --off-white:#F0EFED; --stone:#E8E6E2;
+  --text-dark:#0F1923; --text-mid:#374151; --text-muted:#6B7280;
+  --border:#E5E2DC;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --r:14px; --ease:.22s ease;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--text-dark);background:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;}
+
+/* ══ PRELOADER ══ */
+#preloader{
+  position:fixed;inset:0;z-index:9999;background:var(--navy);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;
+  transition:opacity 1s cubic-bezier(.4,0,.2,1), visibility 1s ease;
+}
+#preloader.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+.pre-logo{
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+  opacity:0;transform:translateY(12px);
+  animation:preLogoIn .7s cubic-bezier(.22,1,.36,1) .1s both;
+}
+@keyframes preLogoIn{to{opacity:1;transform:none;}}
+.pre-logo img{
+  
+  border-radius:6px;
+  /* Don't fade — just show once loaded */
+}
+.pre-name{
+  font-family:var(--serif);font-size:30px;font-weight:600;
+  color:var(--white);letter-spacing:.02em;
+  opacity:0;animation:preLogoIn .6s ease .4s both;
+}
+.pre-sub{
+  font-family:var(--sans);font-size:10px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.32);
+  opacity:0;animation:preLogoIn .6s ease .55s both;
+}
+.pre-bar-wrap{
+  width:220px;height:2px;background:rgba(255,255,255,.1);
+  border-radius:2px;overflow:hidden;
+  opacity:0;animation:preLogoIn .4s ease .65s both;
+}
+.pre-bar-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--gold),var(--gold-light));
+  border-radius:2px;
+  transition:width .12s linear;
+}
+
+/* ══ SCROLL PROGRESS ══ */
+#sprogress{position:fixed;top:0;left:0;right:0;height:2px;z-index:300;pointer-events:none;}
+#sprogress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold-light));transition:width .08s linear;}
+
+/* ══ CURSOR GLOW ══ */
+#cglow{pointer-events:none;position:fixed;z-index:100;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(200,88,30,.065) 0%,transparent 70%);transform:translate(-50%,-50%);opacity:0;transition:opacity .5s ease;will-change:transform;}
+
+/* ══ SCROLL REVEAL ══ */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  /* Long, very smooth ease — like oil on glass */
+  transition:
+    opacity 1.1s cubic-bezier(.16,1,.3,1),
+    transform 1.1s cubic-bezier(.16,1,.3,1);
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+/* Base delays — JS adds per-element inline delays on top of these */
+.rd1{transition-delay:.05s;}
+.rd2{transition-delay:.15s;}
+.rd3{transition-delay:.25s;}
+.rd4{transition-delay:.35s;}
+.rd5{transition-delay:.45s;}
+.rd6{transition-delay:.55s;}
+
+
+/* ═══ PRICING GRID ═══ */
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:700px;margin:0 auto;}
+.pricing-card{background:var(--white);border-radius:var(--r);border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;}
+.pricing-card-featured{border:2px solid var(--gold);}
+.pricing-card-top{padding:28px 28px 22px;}
+.pricing-top-navy{background:var(--navy);}
+.pricing-top-gold{background:var(--gold);}
+.pricing-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px;}
+.pricing-top-gold .pricing-label{color:rgba(255,255,255,.75);}
+.pricing-price{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--white);line-height:1;}
+.pricing-sub{font-size:12.5px;color:rgba(255,255,255,.4);margin-top:6px;}
+.pricing-top-gold .pricing-sub{color:rgba(255,255,255,.7);}
+.pricing-card-body{padding:22px 28px 28px;flex:1;display:flex;flex-direction:column;}
+.pricing-list{list-style:none;display:flex;flex-direction:column;gap:10px;flex:1;margin-bottom:20px;}
+.pricing-list li{font-size:13.5px;color:var(--text-mid);display:flex;align-items:center;gap:10px;}
+.pricing-list li::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;display:inline-block;}
+.pricing-btn{width:100%;justify-content:center;}
+@media(max-width:600px){
+  .pricing-grid{grid-template-columns:1fr;max-width:100%;}
+}
+
+/* ══ NAV SCROLLED ══ */
+.nav.scrolled{background:#282828;box-shadow:0 4px 28px rgba(0,0,0,.22);border-bottom-color:rgba(200,88,30,.25);}
+
+/* ══ RIPPLE ══ */
+.btn{position:relative;overflow:hidden;}
+.ripple-el{position:absolute;border-radius:50%;background:rgba(255,255,255,.25);transform:scale(0);animation:ripple .55s linear;pointer-events:none;}
+@keyframes ripple{to{transform:scale(4);opacity:0;}}
+
+/* ══ IMG FADE IN ══ */
+.fi{opacity:0;transition:opacity 1s cubic-bezier(.22,1,.36,1);}
+.fi.loaded{opacity:1;}
+
+/* ══ CARD GOLD ACCENT ══ */
+.pcard{border-left:3px solid transparent;transition:transform .25s ease,box-shadow .25s ease,border-left-color .25s ease;}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(42,42,42,.1);border-left-color:var(--gold);}
+.wcard{border-left:3px solid transparent;transition:box-shadow .25s ease,border-left-color .25s ease;}
+.wcard:hover{box-shadow:0 8px 28px rgba(42,42,42,.07);border-left-color:var(--gold);}
+
+/* parallax removed — was causing scroll jank */
+
+/* ═══ CONTAINER ═══ */
+.container{max-width:1180px;margin:0 auto;padding:0 48px;}
+/* Offset for fixed nav on anchor scroll */
+section[id], div[id]{scroll-margin-top:155px;}
+/* content width = 1180 - 96px padding = 1084px actual content */
+
+/* ═══ EYEBROW PILLS ═══ */
+/* style-a: pill with full border-radius (hero) */
+.pill-a{
+  display:inline-flex;align-items:center;
+  font-family:var(--sans);font-size:10.5px;font-weight:700;
+  letter-spacing:0.13em;text-transform:uppercase;
+  padding:5px 13px;border-radius:100px;
+}
+/* style-b: flat left-bottom corner — navy bg (About Us uses GOLD fill) */
+.pill-b{
+  display:inline-flex;align-items:center;
+  font-family:var(--sans);font-size:10.5px;font-weight:700;
+  letter-spacing:0.13em;text-transform:uppercase;
+  padding:5px 14px;
+  border-radius:100px 100px 100px 0;
+}
+.pill-gold{background:var(--gold);color:var(--white);}
+.pill-navy{background:var(--navy);color:var(--white);}
+.pill-outline{background:transparent;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.18);}
+.pill-lite{background:var(--white);color:var(--text-mid);border:1px solid var(--border);}
+
+/* ═══ BUTTONS ═══ */
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--sans);font-size:14px;font-weight:600;
+  padding:11px 26px;border-radius:100px;
+  cursor:pointer;border:none;transition:all var(--ease);white-space:nowrap;
+}
+.btn-gold{background:var(--gold);color:var(--white);}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 8px 24px rgba(200,88,30,.28);}
+.btn-outline-w{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.35);}
+.btn-outline-w:hover{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.07);}
+.btn-card{background:var(--gold);color:var(--white);font-size:13px;padding:9px 20px;}
+.btn-card:hover{background:var(--gold-light);}
+.btn-ghost{background:transparent;color:var(--text-mid);border:1.5px solid var(--border);font-size:13px;padding:9px 20px;}
+.btn-ghost:hover{border-color:var(--text-mid);}
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:#282828;backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(200,88,30,.1);
+}
+.nav-inner{
+  max-width:1180px;margin:0 auto;padding:0 48px;
+  height:60px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.nav-logo{display:flex;align-items:center;gap:0;flex-shrink:0;}
+.nav-logo img{height:50px;width:auto;display:block;}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+.nav-links a{font-size:13.5px;font-weight:500;color:rgba(255,255,255,.72);transition:color var(--ease);}
+.nav-links a:hover{color:var(--white);}
+.nav-actions{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.nav-signin{font-size:13.5px;font-weight:500;color:rgba(255,255,255,.55);background:none;border:none;cursor:pointer;font-family:var(--sans);}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.nav-burger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.8);border-radius:2px;transition:all .3s ease;}
+/* burger animation */
+.nav-burger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-burger.is-open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.nav-burger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* mobile drawer */
+.nav-drawer{
+  position:fixed;top:64px;left:0;right:0;z-index:199;
+  background:var(--navy-mid);border-top:1px solid rgba(255,255,255,.06);
+  transform:translateY(-10px);opacity:0;pointer-events:none;
+  transition:transform .32s cubic-bezier(.4,0,.2,1), opacity .28s ease;
+  padding:0;
+}
+.nav-drawer.is-open{transform:translateY(0);opacity:1;pointer-events:all;}
+.nav-drawer a{
+  display:block;font-size:15px;font-weight:500;color:rgba(255,255,255,.78);
+  padding:14px 28px;border-bottom:1px solid rgba(255,255,255,.05);
+  transition:color var(--ease), background var(--ease);
+}
+.nav-drawer a:hover{background:rgba(255,255,255,.04);color:var(--white);}
+.nav-drawer .drawer-cta{padding:18px 28px 24px;border-top:1px solid rgba(255,255,255,.08);}
+.nav-drawer .drawer-cta .btn{width:100%;justify-content:center;}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero{
+  min-height:100vh;background:var(--navy);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:120px 48px 80px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 55% at 50% 15%,rgba(200,88,30,.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+/* Hero inner text: 80% of container width (1180px container → 80% = 944px) */
+.hero-content{
+  width:80%;max-width:944px;
+  display:flex;flex-direction:column;align-items:center;
+}
+.hero-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(200,88,30,.9);margin-bottom:22px;
+}
+.hero h1{
+  font-family:var(--serif);font-size:60px;
+  font-weight:600;line-height:1.06;color:var(--white);
+  margin-bottom:22px;
+}
+.hero-sub{
+  font-size:16px;line-height:1.75;color:rgba(255,255,255,.5);
+  max-width:450px;margin-bottom:40px;
+}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:64px;}
+/* Hero images: 80% of container */
+.hero-imgs{
+  display:grid;width:80%;max-width:944px;
+  grid-template-columns:66fr 34fr;gap:14px;
+}
+.hero-img{
+  border-radius:var(--r);overflow:hidden;background:var(--navy-light);
+  /* Container stays visible always */
+}
+.hero-img img{
+  width:100%;height:100%;object-fit:cover;
+  opacity:0;
+  transition:opacity 1.2s cubic-bezier(.22,1,.36,1);
+  /* hi-visible added by JS after preloader dismisses */
+}
+.hero-img img.hi-visible{opacity:1;}
+.hero-img:first-child{height:320px;}
+.hero-img:last-child{height:320px;}
+
+/* ═══════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════ */
+.about{padding:96px 0;background:var(--white);}
+/* 80% of container (1180px) = 944px, but only on desktop */
+.about-inner{text-align:center;width:80%;max-width:944px;margin:0 auto;}
+.about-inner h2{
+  font-family:var(--serif);font-size:clamp(34px,4vw,52px);
+  font-weight:600;color:var(--text-dark);margin-bottom:22px;line-height:1.1;margin-top:18px;
+}
+.about-text{font-size:16px;line-height:1.8;color:var(--text-mid);margin-bottom:52px;max-width:720px;margin-left:auto;margin-right:auto;}
+.about-text strong{color:var(--text-dark);font-weight:700;}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.astat{
+  border-radius:var(--r);padding:10px 20px;
+  display:flex;align-items:center;gap:16px;
+}
+.astat-gold{background:var(--gold);}
+.astat-dark1{background:var(--navy);border:1px solid rgba(200,88,30,.18);}
+.astat-dark2{background:var(--navy-mid);border:1px solid rgba(200,88,30,.18);}
+.astat-icon{
+  width:48px;height:48px;border-radius:10px;flex-shrink:0;
+  background:rgba(255,255,255,0.12);
+  display:flex;align-items:center;justify-content:center;
+}
+.astat-gold .astat-icon{background:rgba(255,255,255,0.9);}
+.astat-icon svg{width:24px;height:24px;}
+.astat-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.65;margin-bottom:3px;}
+.astat-value{font-family:var(--serif);font-size:38px;font-weight:700;line-height:1;}
+.astat-gold .astat-label,.astat-gold .astat-value{color:var(--navy);}
+.astat-dark1 .astat-label,.astat-dark1 .astat-value,
+.astat-dark2 .astat-label,.astat-dark2 .astat-value{color:var(--white);}
+
+/* ═══════════════════════════════════════
+   PRACTICE AREAS
+═══════════════════════════════════════ */
+.practice{padding:96px 0;background:var(--off-white);}
+.practice-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;gap:20px;}
+.practice-hdr h2{
+  font-family:var(--serif);font-size:clamp(30px,3.5vw,46px);
+  font-weight:600;color:var(--text-dark);line-height:1.1;margin-top:14px;
+}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.pcard{
+  background:var(--white);border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--border);
+  transition:transform var(--ease),box-shadow var(--ease);
+  display:flex;flex-direction:column;
+}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(42,42,42,.1);}
+.pcard-img{height:210px;overflow:hidden;background:var(--navy-light);}
+.pcard-img img{width:100%;height:100%;object-fit:cover;opacity:.8;transition:opacity .3s;}
+.pcard:hover .pcard-img img{opacity:.95;}
+.pcard-body{padding:24px;flex:1;display:flex;flex-direction:column;}
+.pcard-body h3{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--text-dark);margin-bottom:9px;line-height:1.2;}
+.pcard-body p{font-size:13.5px;line-height:1.6;color:var(--text-muted);margin-bottom:14px;}
+.pcard-kp{list-style:none;margin-bottom:20px;flex:1;}
+.pcard-kp li{
+  font-size:13px;color:var(--text-mid);padding:2px 0;
+  display:flex;align-items:center;gap:9px;line-height:1.4;
+}
+.pcard-kp li::before{
+  content:'';width:7px;height:7px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+}
+.pcard-actions{display:flex;gap:10px;}
+
+/* ═══════════════════════════════════════
+   WHY / WHAT WE DO
+═══════════════════════════════════════ */
+.why{padding:96px 0;background:var(--white);}
+.why-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:72px;align-items:center;}
+.why-left h2{
+  font-family:var(--serif);font-size:clamp(30px,3.5vw,44px);
+  font-weight:600;line-height:1.15;color:var(--text-dark);margin-bottom:18px;margin-top:14px;
+}
+.why-left p{font-size:14.5px;line-height:1.8;color:var(--text-muted);}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.wcard{
+  background:var(--stone);border-radius:var(--r);
+  padding:28px 24px;border:1px solid var(--border);
+  transition:box-shadow var(--ease);
+}
+.wcard:hover{box-shadow:0 8px 28px rgba(42,42,42,.07);}
+.wcard-icon{margin-bottom:16px;}
+.wcard-icon svg{width:28px;height:28px;}
+.wcard h3{font-size:15px;font-weight:600;color:var(--text-dark);margin-bottom:8px;}
+.wcard p{font-size:13px;line-height:1.65;color:var(--text-muted);}
+
+/* ═══════════════════════════════════════
+   FEATURES
+═══════════════════════════════════════ */
+.features{padding:96px 0;background:var(--off-white);}
+.features-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start;}
+.features-left{position:sticky;top:80px;}
+.features-left h2{
+  font-family:var(--serif);font-size:clamp(30px,3.5vw,44px);
+  font-weight:600;line-height:1.15;color:var(--text-dark);margin-bottom:18px;margin-top:14px;
+}
+.features-left h2 em{font-style:normal;color:var(--gold);}
+.features-left p{font-size:14.5px;line-height:1.8;color:var(--text-muted);}
+.flist{display:flex;flex-direction:column;gap:8px;}
+.fitem{
+  background:var(--white);border-radius:var(--r);
+  padding:20px 24px;display:flex;align-items:flex-start;gap:18px;
+  border:1px solid var(--border);transition:background var(--ease);cursor:default;
+}
+.fitem:hover{background:var(--stone);}
+.fitem-icon{
+  width:40px;height:40px;border-radius:9px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  /* No background — icon only like reference */
+}
+.fitem-icon svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.fitem-text h4{font-size:14.5px;font-weight:600;color:var(--text-dark);margin-bottom:4px;}
+.fitem-text p{font-size:13px;line-height:1.6;color:var(--text-muted);}
+
+/* ═══════════════════════════════════════
+   OUR PROCESS
+═══════════════════════════════════════ */
+.process{padding:96px 0;background:var(--navy);position:relative;overflow:hidden;}
+.process::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(200,88,30,.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+.process-hdr{text-align:center;margin-bottom:64px;}
+.process-hdr h2{
+  font-family:var(--serif);font-size:clamp(32px,4vw,52px);
+  font-weight:600;color:var(--white);margin-bottom:14px;margin-top:18px;line-height:1.1;
+}
+.process-hdr p{font-size:15px;color:rgba(255,255,255,.45);max-width:520px;margin:0 auto;line-height:1.7;}
+.process-track{
+  position:relative;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+  max-width:1080px;margin:0 auto;
+}
+.process-track::before{
+  content:'';position:absolute;top:36px;left:calc(10% + 18px);right:calc(10% + 18px);
+  height:1px;background:linear-gradient(90deg,transparent,rgba(200,88,30,.35),rgba(200,88,30,.35),transparent);
+  pointer-events:none;z-index:0;
+}
+.pstep{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:0 12px;position:relative;z-index:1;
+}
+.pstep-num{
+  width:72px;height:72px;border-radius:50%;
+  border:1.5px solid rgba(200,88,30,.35);
+  background:var(--navy-mid);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;flex-shrink:0;
+  transition:border-color .3s ease,background .3s ease;
+}
+.pstep:hover .pstep-num,.pstep-active .pstep-num{border-color:var(--gold);background:var(--gold);}
+.pstep-icon{width:28px;height:28px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.pstep:hover .pstep-icon,.pstep-active .pstep-icon{stroke:var(--white);}
+.pstep-n{
+  font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:6px;opacity:.65;
+}
+.pstep h4{
+  font-family:var(--serif);font-size:17px;font-weight:600;
+  color:var(--white);line-height:1.2;margin-bottom:8px;
+}
+.pstep p{font-size:12.5px;line-height:1.65;color:rgba(255,255,255,.38);max-width:160px;margin:0 auto;}
+
+/* ═══════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════ */
+.testi{padding:96px 0;background:var(--white);}
+.testi-hdr{text-align:center;margin-bottom:52px;}
+.testi-hdr h2{
+  font-family:var(--serif);font-size:clamp(30px,4vw,50px);
+  font-weight:600;color:var(--text-dark);margin-bottom:14px;margin-top:18px;line-height:1.15;
+  max-width:520px;margin-left:auto;margin-right:auto;
+}
+.testi-hdr p{font-size:14.5px;color:var(--text-muted);max-width:420px;margin:0 auto;}
+/* slider */
+.testi-slider-wrap{
+  position:relative;overflow:hidden;margin-bottom:36px;
+  cursor:grab;
+  /* show partial 3rd card: mask right edge softly */
+}
+.testi-slider{
+  display:flex;gap:18px;
+  transition:transform .55s cubic-bezier(.4,0,.2,1);
+  cursor:grab;user-select:none;will-change:transform;
+}
+.testi-slider.is-dragging{transition:none;cursor:grabbing;}
+/* Desktop: each card = 47% so 2 full + 6% of 3rd showing */
+.tcard{
+  background:var(--stone);border-radius:var(--r);
+  padding:30px 28px;border:1px solid var(--border);
+  flex:0 0 calc(47% - 9px);min-width:calc(47% - 9px);
+  opacity:1;pointer-events:all;
+  transition:opacity .3s ease;
+}
+.tcard-quote{
+  font-family:var(--serif);font-size:17px;font-style:italic;
+  line-height:1.65;color:var(--text-dark);margin-bottom:24px;
+}
+.tcard-author{display:flex;align-items:center;justify-content:space-between;}
+.tcard-info{}
+.tcard-name{font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:2px;}
+.tcard-title{font-size:12px;color:var(--text-muted);}
+.tcard-li{
+  width:30px;height:30px;background:var(--off-white);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.tcard-li svg{width:13px;height:13px;fill:var(--text-muted);}
+.testi-nav{display:flex;justify-content:center;gap:10px;}
+.tnav-btn{
+  width:42px;height:42px;border-radius:50%;
+  border:1.5px solid var(--border);background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all var(--ease);
+}
+.tnav-btn:hover{border-color:var(--navy);background:var(--navy);}
+.tnav-btn svg{width:15px;height:15px;stroke:var(--text-muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke var(--ease);}
+.tnav-btn:hover svg{stroke:var(--white);}
+
+/* ═══════════════════════════════════════
+   FAQ
+═══════════════════════════════════════ */
+.faq{padding:96px 0;background:var(--navy);position:relative;overflow:hidden;}
+/* animated grid lines */
+.faq-lines{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.faq-lines::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(200,88,30,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,88,30,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:gridScroll 12s linear infinite;
+}
+.faq-lines::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,var(--navy) 0%,transparent 20%,transparent 80%,var(--navy) 100%);
+}
+@keyframes gridScroll{from{background-position:0 0;}to{background-position:60px 60px;}}
+/* corner accent lines */
+.faq-accent{position:absolute;pointer-events:none;}
+.faq-accent-tl{top:0;left:0;width:180px;height:180px;}
+.faq-accent-br{bottom:0;right:0;width:180px;height:180px;transform:rotate(180deg);}
+.faq-accent line{stroke:rgba(200,88,30,.18);stroke-width:1;}
+
+.faq-hdr{text-align:center;margin-bottom:52px;position:relative;z-index:1;}
+.faq-eyebrow{
+  font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:14px;
+}
+.faq-hdr h2{
+  font-family:var(--serif);font-size:clamp(32px,4vw,56px);
+  font-weight:600;color:var(--white);margin-bottom:14px;line-height:1.06;
+}
+.faq-hdr p{font-size:14.5px;color:rgba(255,255,255,.35);max-width:480px;margin:0 auto;}
+.faq-list{max-width:740px;margin:0 auto;position:relative;z-index:1;}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.1);}
+.faq-item:first-child{border-top:1px solid rgba(255,255,255,.1);}
+.faq-trigger{
+  width:100%;padding:19px 0;display:flex;align-items:center;gap:16px;
+  cursor:pointer;background:none;border:none;text-align:left;
+}
+.faq-num{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:rgba(255,255,255,.4);
+  font-family:var(--sans);transition:all var(--ease);
+}
+.faq-item.open .faq-num{background:var(--gold);color:var(--navy);}
+.faq-q{flex:1;font-family:var(--sans);font-size:15px;font-weight:500;color:rgba(255,255,255,.82);line-height:1.4;}
+.faq-chevron{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  border:1px solid rgba(255,255,255,.14);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform var(--ease),border-color var(--ease);
+}
+.faq-chevron svg{width:13px;height:13px;stroke:rgba(255,255,255,.4);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.faq-item.open .faq-chevron{transform:rotate(180deg);border-color:rgba(200,88,30,.4);}
+.faq-item.open .faq-chevron svg{stroke:var(--gold);}
+.faq-answer{
+  max-height:0;overflow:hidden;
+  transition:max-height .38s cubic-bezier(.4,0,.2,1),padding .28s ease;
+  padding-left:44px;padding-right:16px;
+}
+.faq-item.open .faq-answer{max-height:300px;padding-bottom:18px;}
+.faq-answer p{font-size:13.5px;line-height:1.75;color:rgba(255,255,255,.4);}
+
+/* ═══════════════════════════════════════
+   CONTACT SECTION
+═══════════════════════════════════════ */
+.contact{padding:96px 0;background:var(--white);}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.contact-left{}
+.contact-left .pill-b{margin-bottom:20px;}
+.contact-left h2{
+  font-family:var(--serif);font-size:clamp(30px,3.5vw,44px);
+  font-weight:600;color:var(--text-dark);line-height:1.15;margin-bottom:24px;margin-top:14px;
+}
+.contact-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;}
+.contact-row-icon{
+  width:34px;height:34px;border-radius:8px;background:var(--off-white);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.contact-row-icon svg{width:16px;height:16px;fill:var(--navy);}
+.contact-row-text{font-size:14px;color:var(--text-mid);line-height:1.6;}
+.contact-right{
+  background:var(--stone);border-radius:var(--r);
+  padding:36px;border:1px solid var(--border);
+}
+.contact-form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.contact-form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.contact-form-group label{font-size:12px;font-weight:600;color:var(--text-mid);letter-spacing:.04em;}
+.contact-form-group input,
+.contact-form-group textarea{
+  font-family:var(--sans);font-size:14px;color:var(--text-dark);
+  background:var(--white);border:1px solid var(--border);border-radius:8px;
+  padding:11px 14px;outline:none;transition:border-color var(--ease);resize:none;
+}
+.contact-form-group input:focus,
+.contact-form-group textarea:focus{border-color:var(--navy);}
+.contact-form-group input::placeholder,
+.contact-form-group textarea::placeholder{color:var(--text-muted);}
+.contact-form-group textarea{height:110px;}
+.btn-send{width:100%;justify-content:center;padding:13px;font-size:15px;}
+
+/* ═══════════════════════════════════════
+   CTA BANNER
+═══════════════════════════════════════ */
+.cta{padding:0 0 80px;background:var(--white);}
+.cta-box{
+  background:var(--navy);border-radius:18px;
+  padding:40px 52px;display:flex;align-items:center;gap:32px;
+  position:relative;overflow:hidden;
+}
+/* animated corner lines on CTA */
+.cta-box::before{
+  content:'';position:absolute;top:-60px;left:-60px;
+  width:200px;height:200px;pointer-events:none;
+  border:1px solid rgba(200,88,30,.12);border-radius:50%;
+  animation:rotateSlow 20s linear infinite;
+}
+.cta-box::after{
+  content:'';position:absolute;bottom:-80px;right:-80px;
+  width:280px;height:280px;pointer-events:none;
+  border:1px solid rgba(200,88,30,.08);border-radius:50%;
+  animation:rotateSlow 28s linear infinite reverse;
+}
+@keyframes rotateSlow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.cta-icon-wrap{
+  /* big golden document icon, no background box */
+  flex-shrink:0;position:relative;z-index:1;
+}
+.cta-icon-wrap svg{width:72px;height:72px;}
+.cta-text{flex:1;position:relative;z-index:1;}
+.cta-text h3{
+  font-family:var(--serif);font-size:clamp(20px,2.5vw,28px);
+  font-weight:600;color:var(--white);margin-bottom:8px;line-height:1.2;
+}
+.cta-text p{font-size:14px;color:rgba(255,255,255,.42);line-height:1.6;max-width:420px;}
+.cta-action{flex-shrink:0;position:relative;z-index:1;}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer{background:#282828;padding-top:60px;}
+/* inner 1: logo + 4 nav columns */
+.footer-top{
+  display:grid;grid-template-columns:220px 1fr 1fr 1fr 1fr;
+  gap:60px;padding-bottom:48px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.footer-logo img{height:50px;width:auto;margin-bottom:0;}
+.footer-logo-desc{display:none;font-size:13px;line-height:1.75;color:rgba(255,255,255,.32);}
+.footer-col-title{
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);margin-bottom:18px;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-col ul a{font-size:13.5px;color:rgba(255,255,255,.35);transition:color var(--ease);}
+.footer-col ul a:hover{color:rgba(255,255,255,.75);}
+/* inner 2: desc | contact | social */
+.footer-mid{
+  display:grid;grid-template-columns:1.2fr 1.4fr 1fr;
+  gap:40px;padding:40px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.footer-desc{font-size:13.5px;line-height:1.8;color:rgba(255,255,255,.3);max-width:280px;}
+.footer-desc-desktop{} /* visible desktop by default */
+.footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:13px;}
+.footer-contact-item svg{width:14px;height:14px;fill:var(--gold);margin-top:3px;flex-shrink:0;}
+.footer-contact-item span{font-size:13px;color:rgba(255,255,255,.38);line-height:1.6;}
+.footer-socials{display:flex;gap:8px;flex-wrap:wrap;}
+.fsoc-btn{
+  width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background var(--ease);
+}
+.fsoc-btn:hover{background:var(--gold);}
+.fsoc-btn svg{width:15px;height:15px;fill:rgba(255,255,255,.45);transition:fill var(--ease);}
+.fsoc-btn:hover svg{fill:var(--navy);}
+/* inner 3: copyright | links | back top */
+.footer-bot-wrap{
+  margin:0 -48px -48px;
+  background:linear-gradient(135deg,#1a1a1a 0%,#1f1c18 50%,#1a1a1a 100%);
+  border-top:1px solid rgba(200,88,30,.0);
+  position:relative;
+  overflow:hidden;
+}
+.footer-bot-wrap::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(200,88,30,.6) 30%,var(--gold) 50%,rgba(200,88,30,.6) 70%,transparent 100%);
+}
+.footer-bot-wrap::after{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 100% at 50% 100%,rgba(200,88,30,.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.footer-bot{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 48px;gap:20px;flex-wrap:wrap;
+  position:relative;z-index:1;
+}
+.footer-bot-copy{
+  font-size:11.5px;color:rgba(255,255,255,.32);
+  letter-spacing:.01em;
+}
+.footer-bot-links{display:flex;gap:0;}
+.footer-bot-links a{
+  font-size:11.5px;color:rgba(255,255,255,.3);
+  transition:color var(--ease);
+  padding:0 16px;
+  border-right:1px solid rgba(255,255,255,.08);
+  line-height:1;
+}
+.footer-bot-links a:first-child{padding-left:0;}
+.footer-bot-links a:last-child{border-right:none;}
+.footer-bot-links a:hover{color:var(--gold);}
+.footer-back-top{
+  font-size:11.5px;color:rgba(255,255,255,.32);background:none;border:none;
+  font-family:var(--sans);cursor:pointer;display:flex;align-items:center;gap:6px;
+  transition:color var(--ease);letter-spacing:.01em;
+}
+.footer-back-top:hover{color:var(--gold);}
+.footer-back-top .btt-icon{
+  width:26px;height:26px;border-radius:50%;
+  border:1px solid rgba(200,88,30,.3);
+  display:flex;align-items:center;justify-content:center;
+  transition:background var(--ease),border-color var(--ease);
+}
+.footer-back-top:hover .btt-icon{background:var(--gold);border-color:var(--gold);}
+
+/* ═══════════════════════════════════════
+   SCROLL ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.hero-eyebrow{animation:fadeUp .6s ease both .1s;}
+.hero h1{animation:fadeUp .7s ease both .25s;}
+.hero-sub{animation:fadeUp .7s ease both .4s;}
+.hero-ctas{animation:fadeUp .7s ease both .52s;}
+.hero-imgs{animation:fadeUp .8s ease both .65s;}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — TABLET
+═══════════════════════════════════════ */
+@media(max-width:1024px){
+  .container{padding:0 28px;}
+  .nav-inner{padding:0 28px;}
+  .hero{padding:110px 28px 70px;}
+  .tgrid{grid-template-columns:repeat(2,1fr);gap:24px;}
+  .footer-top{grid-template-columns:180px 1fr 1fr;gap:28px;}
+  .footer-mid{grid-template-columns:1fr 1fr;gap:28px;}
+  .pgrid{grid-template-columns:1fr 1fr;}
+  .why-inner{grid-template-columns:1fr;gap:48px;}
+  .features-inner{grid-template-columns:1fr;gap:40px;}
+  .features-left{position:static;}
+  .contact-inner{grid-template-columns:1fr;gap:48px;}
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — MOBILE
+═══════════════════════════════════════ */
+@media(max-width:768px){
+  .container{padding:0 20px;}
+  /* NAV */
+  .nav-inner{padding:0 20px;height:58px;}
+  .nav-links{display:none;}
+  .nav-signin{display:none;}
+  .nav-actions .btn{font-size:12px;padding:8px 14px;}
+  .nav-burger{display:flex;}
+
+  /* HERO */
+  .hero{padding:96px 20px 56px;min-height:auto;}
+  .hero-content{width:100%;max-width:100%;}
+  .hero h1{font-size:clamp(32px,9vw,48px);}
+  .hero-sub{font-size:15px;}
+  .hero-ctas{flex-direction:column;align-items:center;margin-bottom:44px;}
+  .hero-ctas .btn{width:100%;max-width:290px;justify-content:center;}
+  .hero-imgs{width:100%;max-width:100%;grid-template-columns:66fr 34fr;gap:8px;}
+  .hero-img:first-child,.hero-img:last-child{height:200px;}
+
+  /* ABOUT */
+  .about{padding:60px 0;}
+  .about-inner{width:100%;max-width:100%;}
+  .about-stats{grid-template-columns:1fr;gap:8px;}
+  .astat-value{font-size:32px;}
+
+  /* PRACTICE */
+  .practice{padding:60px 0;}
+  .practice-hdr{flex-direction:column;align-items:flex-start;gap:14px;}
+  .pgrid{grid-template-columns:1fr;gap:16px;}
+
+  /* WHY */
+  .why{padding:60px 0;}
+  .why-inner{grid-template-columns:1fr;gap:40px;}
+  .why-grid{grid-template-columns:1fr 1fr;}
+
+  /* FEATURES */
+  .features{padding:60px 0;}
+  .features-inner{grid-template-columns:1fr;gap:36px;}
+  .features-left{position:static;}
+
+  /* TEAM */
+  .team{padding:60px 0;}
+  .tgrid{grid-template-columns:1fr 1fr;gap:18px;}
+  .tmem-photo{aspect-ratio:1/1;}
+  .tmem-name{font-size:16px;}
+
+  /* TESTIMONIALS */
+  .testi{padding:60px 0;}
+  .tcard{flex:0 0 calc(85% - 9px);min-width:calc(85% - 9px);}
+  .testi-slider-wrap{cursor:grab;}
+
+  /* FAQ */
+  .faq{padding:60px 0;}
+  .faq-answer{padding-left:44px;}
+
+  /* CONTACT */
+  .contact{padding:60px 0;}
+  .contact-inner{grid-template-columns:1fr;gap:40px;}
+  .contact-form-row{grid-template-columns:1fr;}
+
+  /* CTA */
+  .cta{padding:0 0 56px;}
+  .cta-box{flex-direction:column;align-items:flex-start;padding:28px 24px;border-radius:14px;gap:20px;}
+  .cta-action .btn{width:100%;justify-content:center;}
+
+  /* FOOTER */
+  footer{padding-top:48px;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:24px;}
+  .footer-logo{
+    grid-column:1/-1;
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .footer-logo-desc{
+    font-size:13px;line-height:1.75;color:rgba(255,255,255,.32);
+    display:block;
+  }
+  .footer-mid{grid-template-columns:1fr;gap:28px;}
+  .footer-desc-desktop{display:none;}
+  .footer-bot{flex-direction:column;align-items:flex-start;gap:12px;}
+  .footer-bot-links{flex-wrap:wrap;gap:12px;}
+}
+
+@media(max-width:480px){
+  .why-grid{grid-template-columns:1fr;}
+  .process-track{grid-template-columns:1fr!important;gap:24px;}
+  .hero-imgs{grid-template-columns:1fr;}
+  .hero-img:first-child,.hero-img:last-child{height:220px;}
+  .footer-top{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ PRELOADER ════ -->
+<div id="preloader">
+  <div class="pre-logo">
+    <img src="https://nejyjogwbbubeqkrgqat.supabase.co/storage/v1/object/public/claudedrop-images/uploads/1777969476733_vj4ysf0.png" alt="A. Williams & Co." style="height:50px;width:auto;border-radius:8px;">
+    <span class="pre-name">A. Williams &amp; Co.</span>
+    <span class="pre-sub">Solicitors — London</span>
+  </div>
+  <div class="pre-bar-wrap"><div class="pre-bar-fill" id="preBar"></div></div>
+</div>
+
+<!-- ════ SCROLL PROGRESS ════ -->
+<div id="sprogress"><div id="sprogress-fill"></div></div>
+
+<!-- ════ CURSOR GLOW ════ -->
+<div id="cglow"></div>
+
+<!-- ════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">
+      <img src="https://nejyjogwbbubeqkrgqat.supabase.co/storage/v1/object/public/claudedrop-images/uploads/1777969476733_vj4ysf0.png" alt="A. Williams & Co.">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#practice">Practice Areas</a></li>
+      <li><a href="#process">Our Process</a></li>
+      <li><a href="#fees">Our Fees</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-signin">Sign In</button>
+      <a href="#contact" class="btn btn-gold">Free Consultation</a>
+      <button class="nav-burger" id="burger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="drawer">
+  <a href="#about">About</a>
+  <a href="#practice">Practice Areas</a>
+  <a href="#process">Our Process</a>
+  <a href="#fees">Our Fees</a>
+  <a href="#contact">Contact</a>
+  <div class="drawer-cta">
+    <a href="#contact" class="btn btn-gold">Free Consultation</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-content reveal">
+    <p class="hero-eyebrow">Cross Border Legal Practice — London, United Kingdom</p>
+    <h1>Expert Legal Solutions<br>You Can Depend &amp; Trust</h1>
+    <p class="hero-sub">A. Williams &amp; Co. is a distinguished cross border law firm, established in London. We serve individuals, families and businesses across the UK and internationally — with deep expertise in Employment, Family, Immigration, Property and Commercial law.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-gold">Get Free Consultation</a>
+      <a href="#practice" class="btn btn-outline-w">View Practice Areas</a>
+    </div>
+  </div>
+  <div class="hero-imgs" style="width:80%;max-width:944px;">
+    <div class="hero-img">
+      <img src="https://nejyjogwbbubeqkrgqat.supabase.co/storage/v1/object/public/claudedrop-images/uploads/1777832608742_83hyk60.webp" alt="Scales of justice" loading="eager">
+    </div>
+    <div class="hero-img">
+      <img src="https://nejyjogwbbubeqkrgqat.supabase.co/storage/v1/object/public/claudedrop-images/uploads/1777832607556_ldlyq90.webp" alt="Legal team" loading="eager">
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     ABOUT
+════════════════════════════════════ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <span class="pill-b pill-gold reveal">About Us</span>
+      <h2 class="reveal rd1">Who We Are</h2>
+      <p class="about-text reveal rd2">
+        A. Williams &amp; Co. (Solicitors) is a <strong>cross border legal practice</strong> based in the heart of London. Our website contains valuable resources of legal information to assist with solutions to relevant legal issues. We assess your case individually and provide practical, results-driven solutions to our clients in the UK and internationally. Clients include individuals and families from the UK, India, Nigeria &amp; USA.
+      </p>
+      <div class="about-stats">
+        <div class="astat astat-dark1 reveal rd3">
+          <div class="astat-icon">
+            <svg viewBox="0 0 24 24" fill="rgba(200,88,30,.85)"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          </div>
+          <div>
+            <div class="astat-label">International Clients</div>
+            <div class="astat-value">500+</div>
+          </div>
+        </div>
+        <div class="astat astat-gold reveal rd4">
+          <div class="astat-icon">
+            <svg viewBox="0 0 24 24" fill="rgba(42,42,42,.7)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm.5 15H11v-6l-2 .01V9.5l3.5-.01V17zm0-9.5c-.83 0-1.5-.67-1.5-1.5S11.67 4.5 12.5 4.5 14 5.17 14 6s-.67 1.5-1.5 1.5z"/></svg>
+          </div>
+          <div>
+            <div class="astat-label">Years of Experience</div>
+            <div class="astat-value">15+</div>
+          </div>
+        </div>
+        <div class="astat astat-dark2 reveal rd5">
+          <div class="astat-icon">
+            <svg viewBox="0 0 24 24" fill="rgba(200,88,30,.85)"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z"/></svg>
+          </div>
+          <div>
+            <div class="astat-label">Practice Areas</div>
+            <div class="astat-value">6</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     PRACTICE AREAS
+════════════════════════════════════ -->
+<section class="practice" id="practice">
+  <div class="container">
+    <div class="practice-hdr reveal">
+      <div>
+        <span class="pill-b pill-navy">What We Have Done</span>
+        <h2>Our Practice Areas</h2>
+      </div>
+      <a href="#practice" class="btn btn-gold" style="flex-shrink:0">View All Areas →</a>
+    </div>
+    <div class="pgrid">
+
+      <div class="pcard">
+        <div class="pcard-img"><img src="https://nejyjogwbbubeqkrgqat.supabase.co/storage/v1/object/public/claudedrop-images/uploads/1777964351486_hw2b0z8.jpeg" alt="Employment Law" loading="lazy"></div>
+        <div class="pcard-body">
+          <h3>Employment Law</h3>
+          <p>Comprehensive employment law services for both employees and employers, covering unfair dismissal, discrimination and workplace disputes.</p>
+          <ul class="pcard-kp">
+            <li>Redundancy &amp; unfair dismissal claims</li>
+            <li>Race, sex &amp; disability discrimination</li>
+          </ul>
+          <div class="pcard-actions"><a href="#contact" class="btn btn-card">Get Help</a><a href="#services" class="btn btn-ghost">Learn More →</a></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-img"><img src="https://nejyjogwbbubeqkrgqat.supabase.co/storage/v1/object/public/claudedrop-images/uploads/1777963986691_1uymcym.jpeg" alt="Family Law" loading="lazy"></div>
+        <div class="pcard-body">
+          <h3>Family Law</h3>
+          <p>Expert family law advice covering divorce, separation, children matters and cross-border international family disputes.</p>
+          <ul class="pcard-kp">
+            <li>Divorce, separation &amp; financial matters</li>
+            <li>Child custody, residency &amp; contact orders</li>
+          </ul>
+          <div class="pcard-actions"><a href="#contact" class="btn btn-card">Get Help</a><a href="#services" class="btn btn-ghost">Learn More →</a></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-img"><img src="https://nejyjogwbbubeqkrgqat.supabase.co/storage/v1/object/public/claudedrop-images/uploads/1777963355498_vgrv3uy.jpeg" alt="Wills and Intestacy" loading="lazy"></div>
+        <div class="pcard-body">
+          <h3>Wills &amp; Intestacy</h3>
+          <p>Specialist advice on contentious probate, intestacy disputes and estate administration for international clients.</p>
+          <ul class="pcard-kp">
+            <li>Contentious probate &amp; intestacy disputes</li>
+            <li>Resealing of grants &amp; Probate Registry searches</li>
+          </ul>
+          <div class="pcard-actions"><a href="#contact" class="btn btn-card">Get Help</a><a href="#services" class="btn btn-ghost">Learn More →</a></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-img"><img src="https://nejyjogwbbubeqkrgqat.supabase.co/storage/v1/object/public/claudedrop-images/uploads/1777963639057_xll34z5.jpeg" alt="Residential Conveyancing" loading="lazy"></div>
+        <div class="pcard-body">
+          <h3>Residential Conveyancing</h3>
+          <p>Property conveyancing, lease extensions, remortgaging and freehold acquisitions across England and Wales.</p>
+          <ul class="pcard-kp">
+            <li>Property conveyancing &amp; remortgaging</li>
+            <li>Lease extensions &amp; freehold acquisitions</li>
+          </ul>
+          <div class="pcard-actions"><a href="#contact" class="btn btn-card">Get Help</a><a href="#services" class="btn btn-ghost">Learn More →</a></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-img"><img src="https://nejyjogwbbubeqkrgqat.supabase.co/storage/v1/object/public/claudedrop-images/uploads/1777963734230_99t4ym2.jpeg" alt="Immigration Law" loading="lazy"></div>
+        <div class="pcard-body">
+          <h3>Immigration Law</h3>
+          <p>Full range of UK immigration services including work permits, entry clearance, appeals and naturalisation applications.</p>
+          <ul class="pcard-kp">
+            <li>Work permits &amp; entry clearance applications</li>
+            <li>Tribunal appeals &amp; human rights applications</li>
+          </ul>
+          <div class="pcard-actions"><a href="#contact" class="btn btn-card">Get Help</a><a href="#services" class="btn btn-ghost">Learn More →</a></div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-img"><img src="https://nejyjogwbbubeqkrgqat.supabase.co/storage/v1/object/public/claudedrop-images/uploads/1777832597674_prne37d.webp" alt="Commercial Litigation" loading="lazy"></div>
+        <div class="pcard-body">
+          <h3>Commercial Litigation</h3>
+          <p>Representation in County Court, High Court, Commercial Court, Employment Tribunal and even the Privy Council.</p>
+          <ul class="pcard-kp">
+            <li>County Court, High Court &amp; Privy Council</li>
+            <li>Employment Tribunal &amp; Bankruptcy Court</li>
+          </ul>
+          <div class="pcard-actions"><a href="#contact" class="btn btn-card">Get Help</a><a href="#services" class="btn btn-ghost">Learn More →</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     WHY CHOOSE US
+════════════════════════════════════ -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="why-inner">
+      <div class="why-left">
+        <span class="pill-b pill-navy">What We Do</span>
+        <h2>Delivering practical cross-border legal solutions you can trust</h2>
+        <p>We specialise in comprehensive cross-border legal issues for both businesses and individuals. Our extensive network of international law firms allows us to handle everything from straightforward UK matters to complex multi-jurisdictional cases with equal care and precision.</p>
+      </div>
+      <div class="why-grid">
+        <div class="wcard">
+          <div class="wcard-icon">
+            <svg viewBox="0 0 30 30" fill="none"><path d="M15 3L4 9v5c0 6.9 4.8 13.3 11 14.9 6.2-1.6 11-8 11-14.9V9L15 3z" stroke="#C8581E" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Huge Experience</h3>
+          <p>Decades of combined experience gained within the United Kingdom and across our vast network of international law firms worldwide.</p>
+        </div>
+        <div class="wcard">
+          <div class="wcard-icon">
+            <svg viewBox="0 0 30 30" fill="none"><circle cx="15" cy="10" r="5" stroke="#C8581E" stroke-width="1.6"/><path d="M5 26c0-5.52 4.48-10 10-10s10 4.48 10 10" stroke="#C8581E" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Skilled Solicitors</h3>
+          <p>Our solicitors assess each matter individually and deliver tailored, practical legal solutions — combining rigorous expertise with genuine personal commitment to every client.</p>
+        </div>
+        <div class="wcard">
+          <div class="wcard-icon">
+            <svg viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="11" stroke="#C8581E" stroke-width="1.6"/><path d="M10 15l3.5 3.5 6.5-7" stroke="#C8581E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Smart Strategy</h3>
+          <p>An innovative communication and coordination system ensuring seamless case management from start to finish.</p>
+        </div>
+        <div class="wcard">
+          <div class="wcard-icon">
+            <svg viewBox="0 0 30 30" fill="none"><rect x="5" y="11" width="20" height="14" rx="3" stroke="#C8581E" stroke-width="1.6"/><path d="M10 11V9a5 5 0 0110 0v2" stroke="#C8581E" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Competitive Fees</h3>
+          <p>Transparent, competitive pricing without compromising on the quality of legal service you receive.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FEATURES
+════════════════════════════════════ -->
+<section class="features" id="services">
+  <div class="container">
+    <div class="features-inner">
+      <div class="features-left">
+        <span class="pill-b pill-lite">Features</span>
+        <h2>Everything you need for <em>trusted</em> legal support</h2>
+        <p>From sensitive personal matters to complex international transactions, we bring focused expertise and practical judgment to every legal challenge — wherever in the world it may arise.</p>
+      </div>
+      <div class="flist">
+        <div class="fitem">
+          <div class="fitem-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 12h10M7 8h7M7 16h5"/></svg></div>
+          <div class="fitem-text"><h4>Immigration &amp; Work Permit Applications</h4><p>Expert guidance on all visa categories, work permits, human rights applications and adjudicator appeals under UK immigration law.</p></div>
+        </div>
+        <div class="fitem">
+          <div class="fitem-icon"><svg viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.52 3.83 10.71 9 12 5.17-1.29 9-6.48 9-12V7L12 2z"/></svg></div>
+          <div class="fitem-text"><h4>Family Law &amp; International Cases</h4><p>Divorce, judicial separation, child custody, international adoption and wardship — handled with sensitivity and cross-border expertise.</p></div>
+        </div>
+        <div class="fitem">
+          <div class="fitem-icon"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><rect x="9" y="13" width="6" height="8"/></svg></div>
+          <div class="fitem-text"><h4>Residential Conveyancing &amp; Property Trust</h4><p>Property conveyancing in England and Wales, cross-border property trust litigation, remortgaging and lease extensions.</p></div>
+        </div>
+        <div class="fitem">
+          <div class="fitem-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="3"/><path d="M8 7V5a4 4 0 018 0v2"/></svg></div>
+          <div class="fitem-text"><h4>Employment Law &amp; Tribunal Representation</h4><p>Redundancy, unfair dismissal, race and disability discrimination claims, ACAS conciliation and compromise agreements.</p></div>
+        </div>
+        <div class="fitem">
+          <div class="fitem-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 7v5l3 3"/></svg></div>
+          <div class="fitem-text"><h4>Wills, Probate &amp; Intestacy</h4><p>Contentious probate disputes, intestacy claims, resealing of foreign grants and prevention of estate receivership for international clients.</p></div>
+        </div>
+        <div class="fitem">
+          <div class="fitem-icon"><svg viewBox="0 0 24 24"><path d="M12 2l-9 5v7c0 5.25 3.83 10.15 9 11.35C17.17 24.15 21 19.25 21 14V7L12 2z"/></svg></div>
+          <div class="fitem-text"><h4>Commercial Litigation &amp; Court Representation</h4><p>Representation across County Court, High Court, Privy Council, Magistrates, Employment Tribunal and Bankruptcy Court.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     OUR PROCESS
+════════════════════════════════════ -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="process-hdr reveal">
+      <span class="pill-b pill-gold">How We Work</span>
+      <h2>Our Client Process</h2>
+      <p>From your first contact to final resolution, we guide you through every step with clarity, expertise and personal dedication.</p>
+    </div>
+    <div class="process-track reveal">
+
+      <div class="pstep pstep-active">
+        <div class="pstep-num">
+          <svg class="pstep-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/></svg>
+        </div>
+        <p class="pstep-n">Step 01</p>
+        <h4>Initial Enquiry</h4>
+        <p>Contact us by phone or email with a brief outline of your legal matter.</p>
+      </div>
+
+      <div class="pstep">
+        <div class="pstep-num">
+          <svg class="pstep-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <p class="pstep-n">Step 02</p>
+        <h4>Free Consultation</h4>
+        <p>We schedule a consultation to fully understand your situation and objectives.</p>
+      </div>
+
+      <div class="pstep">
+        <div class="pstep-num">
+          <svg class="pstep-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <p class="pstep-n">Step 03</p>
+        <h4>Case Assessment</h4>
+        <p>Our solicitors provide a detailed legal opinion and strategy tailored to your case.</p>
+      </div>
+
+      <div class="pstep">
+        <div class="pstep-num">
+          <svg class="pstep-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <p class="pstep-n">Step 04</p>
+        <h4>Active Representation</h4>
+        <p>We manage all proceedings, filings and negotiations on your behalf at every stage.</p>
+      </div>
+
+      <div class="pstep">
+        <div class="pstep-num">
+          <svg class="pstep-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <p class="pstep-n">Step 05</p>
+        <h4>Resolution & Outcome</h4>
+        <p>We deliver a clear resolution and advise on any further steps to protect your interests.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════ -->
+<section class="testi" id="testimonials">
+  <div class="container">
+    <div class="testi-hdr reveal">
+      <span class="pill-b pill-navy">Testimonials</span>
+      <h2>Trusted by clients across the UK and internationally</h2>
+      <p>See what our clients have to say about their experience with A. Williams &amp; Co.</p>
+    </div>
+    <div class="testi-slider-wrap">
+      <div class="testi-slider" id="slider">
+
+        <div class="tcard">
+          <p class="tcard-quote">"A. Williams &amp; Co. handled our immigration application with complete professionalism. They kept us informed at every step and successfully prosecuted our visa extension appeal. I cannot recommend them highly enough."</p>
+          <div class="tcard-author">
+            <div class="tcard-info"><div class="tcard-name">Ahmad Raza</div><div class="tcard-title">Immigration Client, London</div></div>
+            <div class="tcard-li"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          </div>
+        </div>
+
+        <div class="tcard">
+          <p class="tcard-quote">"A. Williams &amp; Co. assisted us with a complex employment discrimination case. Their expertise and determination secured us an excellent conciliated agreement through ACAS. Outstanding work from start to finish."</p>
+          <div class="tcard-author">
+            <div class="tcard-info"><div class="tcard-name">James Thornton</div><div class="tcard-title">Employment Law Client, London</div></div>
+            <div class="tcard-li"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          </div>
+        </div>
+
+        <div class="tcard">
+          <p class="tcard-quote">"The team at A. Williams &amp; Co. guided us through a complex cross-border family law matter with remarkable sensitivity. Their expertise in international family law made all the difference to our case outcome."</p>
+          <div class="tcard-author">
+            <div class="tcard-info"><div class="tcard-name">Priya Sharma</div><div class="tcard-title">Family Law Client, London</div></div>
+            <div class="tcard-li"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          </div>
+        </div>
+
+        <div class="tcard">
+          <p class="tcard-quote">"Exceptional service from start to finish. A. Williams &amp; Co. handled our contentious probate dispute with professionalism and deep legal knowledge. They successfully warned off a caveat and protected our interests throughout."</p>
+          <div class="tcard-author">
+            <div class="tcard-info"><div class="tcard-name">Sarah &amp; David Chen</div><div class="tcard-title">Probate Clients, London</div></div>
+            <div class="tcard-li"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          </div>
+        </div>
+
+        <div class="tcard">
+          <p class="tcard-quote">"A. Williams &amp; Co. assisted with our property conveyancing and cross-border trust matter. They navigated a very complex legal situation with expertise and achieved an excellent result. Truly outstanding solicitors."</p>
+          <div class="tcard-author">
+            <div class="tcard-info"><div class="tcard-name">Mohammed Al-Farsi</div><div class="tcard-title">Property Client, London</div></div>
+            <div class="tcard-li"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          </div>
+        </div>
+
+        <div class="tcard">
+          <p class="tcard-quote">"A. Williams &amp; Co. represented me in an unfair dismissal case and secured a fantastic outcome. Their knowledge of employment law is exceptional and they communicated clearly throughout the entire tribunal process."</p>
+          <div class="tcard-author">
+            <div class="tcard-info"><div class="tcard-name">Wei Zhang</div><div class="tcard-title">Employment Tribunal Client, London</div></div>
+            <div class="tcard-li"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="testi-nav">
+      <button class="tnav-btn" id="tPrev"><svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5"/></svg></button>
+      <button class="tnav-btn" id="tNext"><svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FAQ
+════════════════════════════════════ -->
+<section class="faq" id="faq">
+  <!-- animated corner accents -->
+  <div class="faq-lines"></div>
+  <svg class="faq-accent faq-accent-tl" viewBox="0 0 180 180" fill="none">
+    <line x1="0" y1="40" x2="140" y2="40" class="faq-anim-line"/>
+    <line x1="40" y1="0" x2="40" y2="140" class="faq-anim-line"/>
+    <line x1="0" y1="80" x2="100" y2="80" class="faq-anim-line" style="opacity:.5"/>
+    <line x1="80" y1="0" x2="80" y2="100" class="faq-anim-line" style="opacity:.5"/>
+  </svg>
+  <svg class="faq-accent faq-accent-br" viewBox="0 0 180 180" fill="none">
+    <line x1="0" y1="40" x2="140" y2="40" class="faq-anim-line"/>
+    <line x1="40" y1="0" x2="40" y2="140" class="faq-anim-line"/>
+    <line x1="0" y1="80" x2="100" y2="80" class="faq-anim-line" style="opacity:.5"/>
+    <line x1="80" y1="0" x2="80" y2="100" class="faq-anim-line" style="opacity:.5"/>
+  </svg>
+
+  <div class="container">
+    <div class="faq-hdr reveal">
+      <p class="faq-eyebrow">Answers For Your Questions</p>
+      <h2>Frequently Asked Questions</h2>
+      <p>Answers to the most common questions we receive from clients about our services and process.</p>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item open">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span class="faq-num">1</span>
+          <span class="faq-q">How do I book a consultation with A. Williams &amp; Co.?</span>
+          <span class="faq-chevron"><svg viewBox="0 0 14 14"><path d="M2 4l5 5 5-5"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>You can book an initial consultation by calling our London office on +44 203 287 3519 or +44 203 287 3516. Alternatively, email us at awilliams@williams-law.org and one of our team will respond as soon as possible to arrange a convenient time.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span class="faq-num">2</span>
+          <span class="faq-q">Do you handle cross-border and international legal matters?</span>
+          <span class="faq-chevron"><svg viewBox="0 0 14 14"><path d="M2 4l5 5 5-5"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>Yes. A. Williams &amp; Co. is a cross-border practice with a vast network of international law firms. We regularly act on behalf of clients from the UK, India, Nigeria, USA and other jurisdictions, including cases where the client cannot travel overseas or where litigation has been commenced abroad.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span class="faq-num">3</span>
+          <span class="faq-q">What areas of law does A. Williams &amp; Co. specialise in?</span>
+          <span class="faq-chevron"><svg viewBox="0 0 14 14"><path d="M2 4l5 5 5-5"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>Our core practice areas include Employment Law, Family Law, Wills &amp; Intestacy, Residential Conveyancing, Immigration Law and Commercial Litigation. Please review our practice section or contact us with a brief synopsis of your legal issue and we will respond as soon as possible.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          <span class="faq-num">4</span>
+          <span class="faq-q">Which courts do you represent clients in?</span>
+          <span class="faq-chevron"><svg viewBox="0 0 14 14"><path d="M2 4l5 5 5-5"/></svg></span>
+        </button>
+        <div class="faq-answer"><p>We instruct counsel and represent clients in the County Court, Commercial Court, Magistrates Court, Criminal Court of Appeal, High Court, Employment Tribunal, Bankruptcy Court and the Privy Council.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     CONTACT
+════════════════════════════════════ -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <span class="pill-b pill-navy">Don't Be Shy</span>
+        <h2>Reach Out</h2>
+        <p style="font-size:14.5px;line-height:1.8;color:var(--text-muted);margin-bottom:32px;">Whether you have a legal question or need immediate assistance, our expert solicitors are ready to help. Get in touch today for a free, no-obligation consultation.</p>
+        <div class="contact-row">
+          <div class="contact-row-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+          <span class="contact-row-text">+44 203 287 3519 / +44 203 287 3516 — London</span>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <span class="contact-row-text"><a href="mailto:awilliams@williams-law.org" style="color:inherit;">awilliams@williams-law.org</a></span>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/><path d="M3 5h4l2 4-2.5 1.5c1.1 2.1 2.9 3.9 5 5L13 13l4 2v4a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1" opacity=".3"/><rect x="15" y="3" width="6" height="4" rx="1" opacity=".6"/></svg></div>
+          <span class="contact-row-text">Fax: +44 207 629 9456 / +44 207 900 2529</span>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 2c.34 0 .85.4 1.38 1.38.4.73.75 1.72.99 2.87H9.63c.24-1.15.59-2.14.99-2.87C11.15 4.4 11.66 4 12 4zm-2.6.57A11.6 11.6 0 007.1 8.25H4.58A8.04 8.04 0 019.4 4.57zM4.58 15.75h2.52a11.6 11.6 0 002.3 3.68A8.04 8.04 0 014.58 15.75zm2.82-1.75H4.26a8.1 8.1 0 010-4h3.14a13.6 13.6 0 000 4zm1.23 0a11.7 11.7 0 010-4h6.74a11.7 11.7 0 010 4H8.63zm5.74 5.43A11.6 11.6 0 0016.9 15.75h2.52a8.04 8.04 0 01-4.82 3.43zm3.12-5.18h-3.14a13.6 13.6 0 000-4h3.14a8.1 8.1 0 010 4zm-.97-5.75H16.9a11.6 11.6 0 00-2.3-3.68A8.04 8.04 0 0119.42 8.25z"/></svg></div>
+          <span class="contact-row-text"><a href="https://www.williams-law.org" target="_blank" style="color:inherit;">www.williams-law.org</a></span>
+        </div>
+        <div class="contact-row">
+          <div class="contact-row-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <span class="contact-row-text">33 Cavendish Square, London, W1G 0PW, United Kingdom</span>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="contact-form-row">
+          <div class="contact-form-group" style="margin-bottom:0"><label>Name</label><input type="text" placeholder="Enter Name"></div>
+          <div class="contact-form-group" style="margin-bottom:0"><label>Email</label><input type="email" placeholder="Enter Email"></div>
+        </div>
+        <div class="contact-form-group" style="margin-top:14px"><label>Subject</label><input type="text" placeholder="Enter Subject"></div>
+        <div class="contact-form-group"><label>Message</label><textarea placeholder="Enter Message..."></textarea></div>
+        <button class="btn btn-gold btn-send">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     OUR FEES
+════════════════════════════════════ -->
+<section id="fees" style="padding:96px 0;background:var(--off-white);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:52px;">
+      <span class="pill-b pill-navy reveal">Transparent Pricing</span>
+      <h2 class="reveal rd1" style="font-family:var(--serif);font-size:clamp(30px,3.5vw,48px);font-weight:600;color:var(--text-dark);margin-top:16px;line-height:1.1;">Our Fees &amp; Pricing</h2>
+      <p class="reveal rd2" style="font-size:15px;color:var(--text-muted);max-width:560px;margin:16px auto 0;line-height:1.8;">We believe in complete transparency. Below are our current fee structures. All fees are subject to VAT at the prevailing rate.</p>
+    </div>
+    <div class="pricing-grid reveal rd2">
+
+      <div class="pricing-card">
+        <div class="pricing-card-top pricing-top-navy">
+          <div class="pricing-label">Initial Consultation</div>
+          <div class="pricing-price">Free</div>
+          <div class="pricing-sub">No obligation, 30-minute call</div>
+        </div>
+        <div class="pricing-card-body">
+          <ul class="pricing-list">
+            <li>Case assessment &amp; overview</li>
+            <li>Legal options explained</li>
+            <li>No commitment required</li>
+            <li>Phone, video or in-person</li>
+          </ul>
+          <a href="#contact" class="btn btn-gold pricing-btn">Book Now &#8594;</a>
+        </div>
+      </div>
+
+      <div class="pricing-card pricing-card-featured">
+        <div class="pricing-card-top pricing-top-gold">
+          <div class="pricing-label">Fixed Fee</div>
+          <div class="pricing-price">Quoted</div>
+          <div class="pricing-sub">Agreed upfront for your matter</div>
+        </div>
+        <div class="pricing-card-body">
+          <ul class="pricing-list">
+            <li>Residential conveyancing</li>
+            <li>Wills &amp; probate</li>
+            <li>Lease extensions</li>
+            <li>No hidden charges</li>
+          </ul>
+          <a href="#contact" class="btn btn-gold pricing-btn">Request Quote &#8594;</a>
+        </div>
+      </div>
+
+    </div>
+    <p class="reveal" style="text-align:center;font-size:12.5px;color:var(--text-muted);margin-top:28px;">All fees are subject to VAT at 20%. Disbursements and court fees are charged separately. Legal Aid may be available in certain circumstances.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     CTA BANNER
+════════════════════════════════════ -->
+<section class="cta">
+  <div class="container">
+    <div class="cta-box">
+      <!-- Big golden document icon, no wrapper bg -->
+      <div class="cta-icon-wrap">
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="6" width="44" height="56" rx="6" fill="var(--gold)" opacity=".95"/>
+          <rect x="20" y="20" width="24" height="4" rx="2" fill="var(--navy)" opacity=".7"/>
+          <rect x="20" y="29" width="18" height="3" rx="1.5" fill="var(--navy)" opacity=".5"/>
+          <rect x="20" y="37" width="14" height="3" rx="1.5" fill="var(--navy)" opacity=".5"/>
+          <circle cx="48" cy="52" r="12" fill="var(--navy-light)" stroke="var(--gold)" stroke-width="2"/>
+          <path d="M44 52l2.5 2.5 5-5" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="cta-text">
+        <h3>Schedule a free legal case evaluation</h3>
+        <p>Speak directly with one of our qualified solicitors. No obligation, no hidden fees — just expert legal guidance tailored to your situation.</p>
+      </div>
+      <div class="cta-action">
+        <a href="tel:+442032873519" class="btn btn-gold">Call Us Now →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer id="footer">
+  <div class="container">
+
+    <!-- Inner 1: Logo + 4 nav columns -->
+    <div class="footer-top">
+      <div class="footer-logo">
+        <a href="#home" style="display:inline-block;">
+          <img src="https://nejyjogwbbubeqkrgqat.supabase.co/storage/v1/object/public/claudedrop-images/uploads/1777969476733_vj4ysf0.png" alt="A. Williams & Co." style="height:50px;width:auto;">
+        </a>
+        <span class="footer-logo-desc">A. Williams &amp; Co. is a cross border legal practice providing expert legal services to individuals and businesses across the UK and internationally.</span>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Company</p>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#faq">Insights</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Practice Areas</p>
+        <ul>
+          <li><a href="#practice">Employment Law</a></li>
+          <li><a href="#practice">Family Law</a></li>
+          <li><a href="#practice">Wills &amp; Intestacy</a></li>
+          <li><a href="#practice">Immigration</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Our Services</p>
+        <ul>
+          <li><a href="#practice">Residential Conveyancing</a></li>
+          <li><a href="#practice">Commercial Litigation</a></li>
+          <li><a href="#contact">Costs &amp; Pricing</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Legal</p>
+        <ul>
+          <li><a href="#" onclick="openLegal('privacy');return false;">Privacy Policy</a></li>
+          <li><a href="#" onclick="openLegal('terms');return false;">Terms of Use</a></li>
+          <li><a href="#" onclick="openLegal('complaints');return false;">Complaints Procedure</a></li>
+          <li><a href="#" onclick="openLegal('cookies');return false;">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Inner 2: Description | Contact | Social -->
+    <div class="footer-mid">
+      <p class="footer-desc footer-desc-desktop">A. Williams &amp; Co. is a cross border legal practice providing expert legal services to individuals and businesses across the UK and internationally. Regulated and authorised by the Solicitors Regulation Authority.</p>
+      <div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <span>Tel: +44 203 287 3519 / +44 203 287 3516</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/><rect x="15" y="3" width="6" height="4" rx="1" opacity=".5"/></svg>
+          <span>Fax: +44 207 629 9456 / +44 207 900 2529</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span><a href="mailto:awilliams@williams-law.org" style="color:inherit;">awilliams@williams-law.org</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 2c.34 0 .85.4 1.38 1.38.4.73.75 1.72.99 2.87H9.63c.24-1.15.59-2.14.99-2.87C11.15 4.4 11.66 4 12 4zm-2.6.57A11.6 11.6 0 007.1 8.25H4.58A8.04 8.04 0 019.4 4.57zM4.58 15.75h2.52a11.6 11.6 0 002.3 3.68A8.04 8.04 0 014.58 15.75zm2.82-1.75H4.26a8.1 8.1 0 010-4h3.14a13.6 13.6 0 000 4zm1.23 0a11.7 11.7 0 010-4h6.74a11.7 11.7 0 010 4H8.63zm5.74 5.43A11.6 11.6 0 0016.9 15.75h2.52a8.04 8.04 0 01-4.82 3.43zm3.12-5.18h-3.14a13.6 13.6 0 000-4h3.14a8.1 8.1 0 010 4zm-.97-5.75H16.9a11.6 11.6 0 00-2.3-3.68A8.04 8.04 0 0119.42 8.25z"/></svg>
+          <span><a href="https://www.williams-law.org" target="_blank" style="color:inherit;">www.williams-law.org</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span>33 Cavendish Square, London, W1G 0PW, United Kingdom</span>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-title" style="margin-bottom:16px;">Follow Us</p>
+        <div class="footer-socials">
+          <a class="fsoc-btn" href="https://twitter.com" target="_blank" aria-label="Twitter/X">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.631 5.905-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a class="fsoc-btn" href="https://instagram.com" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round" stroke-width="2"/></svg>
+          </a>
+          <a class="fsoc-btn" href="https://facebook.com" target="_blank" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a class="fsoc-btn" href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inner 3: Copyright | Links | Back to top -->
+    <div class="footer-bot-wrap">
+    <div class="footer-bot">
+      <p class="footer-bot-copy">Copyright © 2005–2026 A. Williams &amp; Co. (Solicitors). All Rights Reserved.</p>
+      <div class="footer-bot-links">
+        <a href="#" onclick="openLegal('privacy');return false;">Privacy Policy</a>
+        <a href="#" onclick="openLegal('terms');return false;">Terms of Service</a>
+        <a href="#" onclick="openLegal('complaints');return false;">Complaints Procedure</a>
+      </div>
+      <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        Back to Top
+        <span class="btt-icon">
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 11V3M3 7l4-4 4 4"/></svg>
+        </span>
+      </button>
+    </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════ -->
+<script>
+/* ══════════════════════════════════════════════════════════════
+   1. PRELOADER
+   Waits for logo to load → starts bar → dismisses
+   → then reveals hero images and content
+══════════════════════════════════════════════════════════════ */
+(function(){
+  const pre     = document.getElementById('preloader');
+  const fill    = document.getElementById('preBar');
+  const logoImg = pre ? pre.querySelector('img') : null;
+  let prog = 0, barRunning = false;
+
+  document.body.style.overflow = 'hidden';
+
+  function runBar(){
+    if(barRunning) return;
+    barRunning = true;
+    const iv = setInterval(()=>{
+      prog += Math.random() * 13 + 5;
+      if(prog >= 100) prog = 100;
+      fill.style.width = prog + '%';
+      if(prog >= 100){
+        clearInterval(iv);
+        setTimeout(dismiss, 550); // pause at 100% so user sees it
+      }
+    }, 75);
+  }
+
+  function dismiss(){
+    pre.classList.add('hidden');
+    document.body.style.overflow = '';
+
+    // Show hero images — both get hi-visible immediately
+    document.querySelectorAll('.hero-img img').forEach((img, i) => {
+      // Slight stagger between the two images
+      setTimeout(() => img.classList.add('hi-visible'), i * 180);
+    });
+
+    // Hero content fades in
+    setTimeout(() => {
+      document.querySelectorAll('.hero .reveal').forEach(el => {
+        el.classList.add('visible');
+      });
+    }, 120);
+  }
+
+  // Start bar only after logo is actually rendered
+  if(logoImg && !logoImg.complete){
+    logoImg.addEventListener('load',  () => setTimeout(runBar, 250));
+    logoImg.addEventListener('error', () => setTimeout(runBar, 250));
+    setTimeout(runBar, 3500); // absolute safety timeout
+  } else {
+    setTimeout(runBar, 280);
+  }
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   2. SMOOTH SCROLL — native CSS scroll-behavior:smooth handles this
+   JS smoothScroll removed — it was the friction source.
+   Nav offset handled by CSS scroll-margin-top on sections.
+══════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════
+   3. SCROLL PROGRESS BAR — throttled with RAF
+══════════════════════════════════════════════════════════════ */
+const pFill = document.getElementById('sprogress-fill');
+let progTicking = false;
+window.addEventListener('scroll', () => {
+  if(progTicking) return;
+  progTicking = true;
+  requestAnimationFrame(() => {
+    if(pFill){
+      const max = document.body.scrollHeight - window.innerHeight;
+      pFill.style.width = Math.min(window.scrollY / max * 100, 100) + '%';
+    }
+    progTicking = false;
+  });
+}, {passive: true});
+
+/* ══════════════════════════════════════════════════════════════
+   4. NAV SCROLL STATE — throttled
+══════════════════════════════════════════════════════════════ */
+const navEl = document.querySelector('.nav');
+let navTicking = false;
+window.addEventListener('scroll', () => {
+  if(navTicking) return;
+  navTicking = true;
+  requestAnimationFrame(() => {
+    if(navEl) navEl.classList.toggle('scrolled', window.scrollY > 60);
+    navTicking = false;
+  });
+}, {passive: true});
+
+/* ══════════════════════════════════════════════════════════════
+   5. HERO PARALLAX — removed, was causing scroll jank/friction
+══════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════
+   6. SCROLL REVEAL
+   Each element in a grid gets its own delay = index × step
+   Creates a smooth wave: element 1 → 2 → 3 → 4 etc.
+   Slow 1.1s cubic transition — very smooth fade+rise
+══════════════════════════════════════════════════════════════ */
+
+// Apply reveal with per-element stagger to grouped items
+function staggerReveal(selector, stepMs){
+  document.querySelectorAll(selector).forEach((el, i) => {
+    el.classList.add('reveal');
+    // Inline delay overrides any CSS class delay
+    el.style.transitionDelay = (i * stepMs / 1000).toFixed(2) + 's';
+  });
+}
+
+// Per-element staggered groups — each comes in one after another
+staggerReveal('.pcard',    110); // service cards: 0ms, 110ms, 220ms, 330ms…
+staggerReveal('.wcard',    130); // why cards
+staggerReveal('.pstep',    100); // process steps
+staggerReveal('.faq-item', 110); // faq rows
+staggerReveal('.fitem',    100); // feature items
+staggerReveal('.tcard',    100); // testimonial cards
+
+// Section headers and layout panels — simple single reveal, no stagger
+function simpleReveal(selector){
+  document.querySelectorAll(selector).forEach(el => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = '0s';
+  });
+}
+[
+  '.practice-hdr', '.process-hdr', '.testi-hdr', '.faq-hdr',
+  '.why-left', '.why-grid',
+  '.features-left', '.flist',
+  '.contact-left', '.contact-right',
+  '.cta-box'
+].forEach(simpleReveal);
+
+// Also reveal about section children
+document.querySelectorAll('.about-inner .pill-b, .about-inner h2, .about-inner .about-text').forEach((el, i) => {
+  el.classList.add('reveal');
+  el.style.transitionDelay = (i * 0.12).toFixed(2) + 's';
+});
+
+// The observer — fires once element enters viewport
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target); // only animate once
+    }
+  });
+}, {
+  threshold:   0.07,
+  rootMargin: '0px 0px -24px 0px'
+});
+
+// Observe all reveal elements except hero (handled by preloader)
+document.querySelectorAll('.reveal').forEach(el => {
+  if(!el.closest('.hero')) revealObs.observe(el);
+});
+
+/* ══════════════════════════════════════════════════════════════
+   7. COUNTER ANIMATION — stats count up on enter
+══════════════════════════════════════════════════════════════ */
+const statDefs = [{t:500,s:'+'},{t:15,s:'+'},{t:6,s:''}];
+let counted = false;
+
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting || counted) return;
+    counted = true;
+    document.querySelectorAll('.astat-value').forEach((el, i) => {
+      const {t, s} = statDefs[i] || {t:0, s:''};
+      let cur = 0;
+      const step = t / 60;
+      const iv = setInterval(() => {
+        cur = Math.min(cur + step, t);
+        el.textContent = Math.round(cur) + s;
+        if(cur >= t) clearInterval(iv);
+      }, 22);
+    });
+  });
+}, {threshold: 0.5}).observe(document.querySelector('.astat') || document.body);
+
+/* ══════════════════════════════════════════════════════════════
+   8. CURSOR GLOW — gold glow on dark sections, desktop only
+══════════════════════════════════════════════════════════════ */
+const glowEl = document.getElementById('cglow');
+let glowOn = false;
+window.addEventListener('mousemove', e => {
+  if(window.innerWidth <= 768 || !glowEl) return;
+  glowEl.style.left = e.clientX + 'px';
+  glowEl.style.top  = e.clientY + 'px';
+  const inDark = ['.hero','#process','.faq'].some(sel => {
+    const sec = document.querySelector(sel);
+    if(!sec) return false;
+    const r = sec.getBoundingClientRect();
+    return e.clientY >= r.top && e.clientY <= r.bottom;
+  });
+  if(inDark !== glowOn){
+    glowOn = inDark;
+    glowEl.style.opacity = inDark ? '1' : '0';
+  }
+}, {passive: true});
+
+/* ══════════════════════════════════════════════════════════════
+   9. BUTTON RIPPLE — click effect
+══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('.btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    const r    = document.createElement('span');
+    r.className = 'ripple-el';
+    const rect  = btn.getBoundingClientRect();
+    const size  = Math.max(rect.width, rect.height);
+    r.style.cssText = [
+      `width:${size}px`,
+      `height:${size}px`,
+      `left:${e.clientX - rect.left - size / 2}px`,
+      `top:${e.clientY - rect.top - size / 2}px`
+    ].join(';');
+    btn.appendChild(r);
+    setTimeout(() => r.remove(), 650);
+  });
+});
+
+/* ══════════════════════════════════════════════════════════════
+   10. IMAGE FADE IN — non-hero images only
+       Hero images handled by preloader dismiss
+══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('img').forEach(img => {
+  if(img.closest('.hero-img')) return; // skip hero images
+  img.classList.add('fi');
+  if(img.complete && img.naturalWidth > 0){
+    img.classList.add('loaded');
+  } else {
+    img.addEventListener('load', () => img.classList.add('loaded'));
+  }
+});
+
+/* ══════════════════════════════════════════════════════════════
+   11. BACK TO TOP
+══════════════════════════════════════════════════════════════ */
+const btBtn = document.querySelector('.footer-back-top');
+if(btBtn) btBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+/* ══════════════════════════════════════════════════════════════
+   12. FAQ ACCORDION — smooth open/close
+══════════════════════════════════════════════════════════════ */
+function toggleFaq(btn){
+  const item   = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+/* ══════════════════════════════════════════════════════════════
+   13. MOBILE NAV DRAWER
+══════════════════════════════════════════════════════════════ */
+const burgerEl = document.getElementById('burger');
+const drawerEl = document.getElementById('drawer');
+burgerEl.addEventListener('click', () => {
+  const open = drawerEl.classList.toggle('is-open');
+  burgerEl.classList.toggle('is-open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+drawerEl.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    drawerEl.classList.remove('is-open');
+    burgerEl.classList.remove('is-open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ══════════════════════════════════════════════════════════════
+   14. TESTIMONIALS — Pure RAF pixel scroll, no stepping
+   Continuous, smooth, infinite loop.
+   Desktop: ~48px/s showing 2+ cards
+   Mobile:  ~36px/s showing 1 card
+   Pause on hover. Drag to scrub.
+══════════════════════════════════════════════════════════════ */
+(function(){
+  const wrap  = document.querySelector('.testi-slider-wrap');
+  const track = document.getElementById('slider');
+  if(!wrap || !track) return;
+
+  // Clone cards: 3 full sets for seamless loop
+  const origCards = Array.from(track.children);
+  const N = origCards.length;
+  origCards.forEach(c => track.appendChild(c.cloneNode(true)));
+  origCards.forEach(c => track.appendChild(c.cloneNode(true)));
+
+  // Flat flex layout, no transitions on track
+  track.style.cssText = [
+    'display:flex',
+    'transition:none',
+    'will-change:transform',
+    'backface-visibility:hidden'
+  ].join(';');
+
+  const isMob = () => window.innerWidth <= 768;
+
+  function cardWidth(){
+    return isMob()
+      ? wrap.offsetWidth * 0.85 + 18
+      : wrap.offsetWidth * 0.47 + 18;
+  }
+
+  function resizeCards(){
+    const cw = cardWidth() - 18;
+    Array.from(track.children).forEach(c => {
+      c.style.flex       = `0 0 ${cw}px`;
+      c.style.minWidth   = `${cw}px`;
+      c.style.maxWidth   = `${cw}px`;
+      c.style.marginRight = '18px';
+    });
+  }
+  resizeCards();
+
+  const DESK = 48; // px per second
+  const MOB  = 36;
+
+  let posX    = 0;
+  let lastTs  = null;
+  let paused  = false;
+  let isDrag  = false;
+  let dragX0  = 0;
+  let dragP0  = 0;
+
+  function loopW(){ return N * cardWidth(); }
+
+  function wrap_pos(p){
+    const lw = loopW();
+    return ((p % lw) + lw) % lw;
+  }
+
+  function tick(ts){
+    if(!lastTs) lastTs = ts;
+    const dt = Math.min((ts - lastTs) / 1000, 0.05); // cap dt to avoid big jumps
+    lastTs = ts;
+
+    if(!paused && !isDrag){
+      posX = wrap_pos(posX + (isMob() ? MOB : DESK) * dt);
+    }
+
+    track.style.transform = `translateX(-${posX}px)`;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  // Pause on hover
+  wrap.addEventListener('mouseenter', () => { paused = true;  lastTs = null; });
+  wrap.addEventListener('mouseleave', () => { paused = false; lastTs = null; });
+
+  // Prev / Next buttons
+  document.getElementById('tNext').addEventListener('click', () => {
+    posX = wrap_pos(posX + cardWidth()); lastTs = null;
+  });
+  document.getElementById('tPrev').addEventListener('click', () => {
+    posX = wrap_pos(posX - cardWidth()); lastTs = null;
+  });
+
+  // Mouse drag
+  wrap.addEventListener('mousedown', e => {
+    isDrag = true; dragX0 = e.clientX; dragP0 = posX;
+    wrap.style.cursor = 'grabbing'; e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if(!isDrag) return;
+    posX = wrap_pos(dragP0 + (dragX0 - e.clientX));
+  });
+  window.addEventListener('mouseup', () => {
+    if(!isDrag) return;
+    isDrag = false; wrap.style.cursor = 'grab'; lastTs = null;
+  });
+
+  // Touch drag
+  wrap.addEventListener('touchstart', e => {
+    isDrag = true; dragX0 = e.touches[0].clientX; dragP0 = posX;
+  }, {passive: true});
+  wrap.addEventListener('touchmove', e => {
+    if(!isDrag) return;
+    posX = wrap_pos(dragP0 + (dragX0 - e.touches[0].clientX));
+  }, {passive: true});
+  wrap.addEventListener('touchend', () => {
+    isDrag = false; lastTs = null;
+  });
+
+  let rzTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(rzTimer);
+    rzTimer = setTimeout(() => { resizeCards(); lastTs = null; }, 150);
+  });
+})();
+</script>
+
+<!-- ════════════════════════════════════
+     LEGAL PAGES MODALS
+════════════════════════════════════ -->
+<div id="legalOverlay" onclick="if(event.target===this)closeLegal()" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);overflow-y:auto;padding:40px 20px;">
+  <div style="max-width:780px;margin:0 auto;background:var(--white);border-radius:18px;overflow:hidden;position:relative;">
+    <div id="legalHeader" style="background:var(--navy);padding:36px 48px 32px;">
+      <button onclick="closeLegal()" style="position:absolute;top:20px;right:24px;background:rgba(255,255,255,.1);border:none;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M3 3l10 10M13 3L3 13"/></svg>
+      </button>
+      <div id="legalPills" style="margin-bottom:14px;"></div>
+      <h2 id="legalTitle" style="font-family:var(--serif);font-size:32px;font-weight:600;color:var(--white);line-height:1.1;"></h2>
+      <p id="legalSub" style="font-size:13px;color:rgba(255,255,255,.4);margin-top:8px;"></p>
+    </div>
+    <div id="legalBody" style="padding:40px 48px 48px;font-size:14.5px;line-height:1.85;color:var(--text-mid);"></div>
+  </div>
+</div>
+
+<style>
+.legal-h3{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text-dark);margin:28px 0 10px;}
+.legal-p{margin-bottom:14px;}
+.legal-ul{padding-left:20px;margin-bottom:14px;}
+.legal-ul li{margin-bottom:6px;}
+.legal-divider{border:none;border-top:1px solid var(--border);margin:28px 0;}
+</style>
+
+<script>
+const legalContent = {
+  privacy: {
+    title: "Privacy Policy",
+    sub: "Last updated: 1 January 2025",
+    pill: "Legal",
+    body: `
+      <p class="legal-p">A. Williams &amp; Co. (Solicitors) ("we", "us", "our") is committed to protecting your personal data. This Privacy Policy explains how we collect, use, store and protect information about you.</p>
+      <hr class="legal-divider">
+      <h3 class="legal-h3">1. Who We Are</h3>
+      <p class="legal-p">A. Williams &amp; Co. (Solicitors) is a cross border legal practice based at 33 Cavendish Square, London, W1G 0PW. We are regulated and authorised by the Solicitors Regulation Authority (SRA).</p>
+      <h3 class="legal-h3">2. Information We Collect</h3>
+      <p class="legal-p">We may collect the following personal data:</p>
+      <ul class="legal-ul">
+        <li>Name, address, email address and telephone number</li>
+        <li>Information relevant to your legal matter</li>
+        <li>Financial information required for billing purposes</li>
+        <li>Technical data including IP addresses and browser type when using our website</li>
+      </ul>
+      <h3 class="legal-h3">3. How We Use Your Information</h3>
+      <p class="legal-p">We use your personal data to:</p>
+      <ul class="legal-ul">
+        <li>Provide legal services and advice</li>
+        <li>Communicate with you regarding your matter</li>
+        <li>Comply with our legal and regulatory obligations</li>
+        <li>Improve our website and services</li>
+        <li>Send relevant legal updates with your consent</li>
+      </ul>
+      <h3 class="legal-h3">4. Legal Basis for Processing</h3>
+      <p class="legal-p">We process your personal data on the basis of (a) performance of a contract; (b) compliance with legal obligations; (c) our legitimate interests; or (d) your explicit consent where required.</p>
+      <h3 class="legal-h3">5. Data Retention</h3>
+      <p class="legal-p">We retain client files for a minimum of 6 years after the conclusion of a matter in accordance with SRA guidelines. After this period, data is securely destroyed.</p>
+      <h3 class="legal-h3">6. Your Rights</h3>
+      <p class="legal-p">Under UK GDPR you have the right to: access your data, rectify inaccurate data, request erasure, restrict processing, data portability and to object to processing. To exercise any of these rights, please contact us at <a href="mailto:awilliams@williams-law.org" style="color:var(--gold);">awilliams@williams-law.org</a>.</p>
+      <h3 class="legal-h3">7. Third Parties</h3>
+      <p class="legal-p">We do not sell or rent your personal data to third parties. We may share data with courts, regulatory bodies, and third parties where required by law or with your consent.</p>
+      <h3 class="legal-h3">8. Contact</h3>
+      <p class="legal-p">For any privacy concerns, please contact our Data Protection Officer at 33 Cavendish Square, London, W1G 0PW or <a href="mailto:awilliams@williams-law.org" style="color:var(--gold);">awilliams@williams-law.org</a>.</p>
+    `
+  },
+  terms: {
+    title: "Terms of Use",
+    sub: "Last updated: 1 January 2025",
+    pill: "Legal",
+    body: `
+      <p class="legal-p">Please read these Terms of Use carefully before using our website at www.williams-law.org. By accessing or using our website, you agree to be bound by these terms.</p>
+      <hr class="legal-divider">
+      <h3 class="legal-h3">1. Acceptance of Terms</h3>
+      <p class="legal-p">By accessing this website you confirm that you accept these Terms of Use and agree to comply with them. If you do not agree, please discontinue use of this website immediately.</p>
+      <h3 class="legal-h3">2. Information on This Website</h3>
+      <p class="legal-p">The content on this website is provided for general information purposes only. It does not constitute legal advice and should not be relied upon as such. You should always seek professional legal advice in relation to your specific circumstances.</p>
+      <h3 class="legal-h3">3. No Solicitor-Client Relationship</h3>
+      <p class="legal-p">Accessing this website or sending us an email does not create a solicitor-client relationship. A formal client retainer must be agreed in writing before any legal advice is provided.</p>
+      <h3 class="legal-h3">4. Intellectual Property</h3>
+      <p class="legal-p">All content on this website, including text, logos, graphics and design, is the intellectual property of A. Williams &amp; Co. (Solicitors). Reproduction without our express written consent is prohibited.</p>
+      <h3 class="legal-h3">5. Links to Third-Party Websites</h3>
+      <p class="legal-p">Our website may contain links to external websites. We are not responsible for the content or privacy practices of those sites and recommend you review their own terms and policies.</p>
+      <h3 class="legal-h3">6. Limitation of Liability</h3>
+      <p class="legal-p">To the fullest extent permitted by law, A. Williams &amp; Co. excludes all liability for any loss or damage arising from reliance on the content of this website.</p>
+      <h3 class="legal-h3">7. Governing Law</h3>
+      <p class="legal-p">These Terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+      <h3 class="legal-h3">8. Changes to These Terms</h3>
+      <p class="legal-p">We reserve the right to update these Terms at any time. Continued use of the website following changes constitutes acceptance of the updated Terms.</p>
+    `
+  },
+  complaints: {
+    title: "Complaints Procedure",
+    sub: "We take all complaints seriously and aim to resolve them promptly",
+    pill: "Client Care",
+    body: `
+      <p class="legal-p">A. Williams &amp; Co. (Solicitors) is committed to providing the highest quality legal service. If you are dissatisfied with any aspect of our service, please follow the procedure below.</p>
+      <hr class="legal-divider">
+      <h3 class="legal-h3">Step 1 — Contact Your Solicitor</h3>
+      <p class="legal-p">In the first instance, please raise your concern directly with the solicitor handling your matter. Many issues can be resolved quickly through informal discussion. Please contact your solicitor by telephone or email in the first instance.</p>
+      <h3 class="legal-h3">Step 2 — Formal Written Complaint</h3>
+      <p class="legal-p">If your concern is not resolved informally, please submit a formal written complaint to our Complaints Partner:</p>
+      <ul class="legal-ul">
+        <li><strong>A. Williams, Complaints Partner</strong></li>
+        <li>33 Cavendish Square, London, W1G 0PW</li>
+        <li>Email: <a href="mailto:awilliams@williams-law.org" style="color:var(--gold);">awilliams@williams-law.org</a></li>
+        <li>Tel: +44 203 287 3519</li>
+      </ul>
+      <h3 class="legal-h3">Step 3 — Our Response</h3>
+      <p class="legal-p">We will acknowledge your complaint within 3 working days. We aim to provide a full written response within 28 days. If we require more time, we will inform you of the delay and the reasons for it.</p>
+      <h3 class="legal-h3">Step 4 — Legal Ombudsman</h3>
+      <p class="legal-p">If you remain dissatisfied following our final response, you may refer your complaint to the Legal Ombudsman:</p>
+      <ul class="legal-ul">
+        <li>Website: <a href="https://www.legalombudsman.org.uk" target="_blank" style="color:var(--gold);">www.legalombudsman.org.uk</a></li>
+        <li>Tel: 0300 555 0333</li>
+        <li>Post: PO Box 6167, Slough, SL1 0EH</li>
+      </ul>
+      <p class="legal-p">You must refer your complaint to the Legal Ombudsman within 1 year of our final response, or within 1 year of when you should have been aware of the issue.</p>
+      <h3 class="legal-h3">SRA Concerns</h3>
+      <p class="legal-p">If you believe we have acted in breach of our professional obligations, you may also report this to the Solicitors Regulation Authority (SRA) at <a href="https://www.sra.org.uk" target="_blank" style="color:var(--gold);">www.sra.org.uk</a>.</p>
+    `
+  },
+  cookies: {
+    title: "Cookie Policy",
+    sub: "Last updated: 1 January 2025",
+    pill: "Legal",
+    body: `
+      <p class="legal-p">This Cookie Policy explains how A. Williams &amp; Co. (Solicitors) uses cookies and similar technologies on our website www.williams-law.org.</p>
+      <hr class="legal-divider">
+      <h3 class="legal-h3">1. What Are Cookies?</h3>
+      <p class="legal-p">Cookies are small text files placed on your device when you visit a website. They help the website remember information about your visit, making your next visit easier and the site more useful to you.</p>
+      <h3 class="legal-h3">2. Types of Cookies We Use</h3>
+      <p class="legal-p"><strong>Strictly Necessary Cookies</strong> — These are essential for the website to function correctly. They cannot be disabled.</p>
+      <p class="legal-p"><strong>Performance Cookies</strong> — These help us understand how visitors use our website by collecting anonymous information. We use this data to improve the site.</p>
+      <p class="legal-p"><strong>Functionality Cookies</strong> — These remember your preferences to improve your experience, such as language or region settings.</p>
+      <p class="legal-p"><strong>Analytics Cookies</strong> — We may use tools such as Google Analytics to collect anonymous usage statistics to help us improve our services.</p>
+      <h3 class="legal-h3">3. Managing Cookies</h3>
+      <p class="legal-p">You can control and delete cookies through your browser settings. Please note that disabling certain cookies may affect the functionality of our website. For information on how to manage cookies in your browser, visit <a href="https://www.aboutcookies.org" target="_blank" style="color:var(--gold);">www.aboutcookies.org</a>.</p>
+      <h3 class="legal-h3">4. Third-Party Cookies</h3>
+      <p class="legal-p">Some pages on our website may include content from third parties (such as social media plugins or embedded maps) which may set their own cookies. We do not control these cookies.</p>
+      <h3 class="legal-h3">5. Updates to This Policy</h3>
+      <p class="legal-p">We may update this Cookie Policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
+      <h3 class="legal-h3">6. Contact Us</h3>
+      <p class="legal-p">If you have any questions about our use of cookies, please contact us at <a href="mailto:awilliams@williams-law.org" style="color:var(--gold);">awilliams@williams-law.org</a>.</p>
+    `
+  }
+};
+
+function openLegal(type) {
+  const data = legalContent[type];
+  if (!data) return;
+  document.getElementById('legalTitle').textContent = data.title;
+  document.getElementById('legalSub').textContent = data.sub;
+  document.getElementById('legalPills').innerHTML = '<span style="display:inline-block;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:var(--gold);color:#fff;">' + data.pill + '</span>';
+  document.getElementById('legalBody').innerHTML = data.body;
+  const overlay = document.getElementById('legalOverlay');
+  overlay.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  overlay.scrollTop = 0;
+}
+
+function closeLegal() {
+  document.getElementById('legalOverlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLegal();
+});
+</script>
+
+</body>
+</html>
